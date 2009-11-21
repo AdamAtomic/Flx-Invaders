@@ -62,8 +62,9 @@ package
 				reset();									//First, reset the shot clock
 				var b:FlxSprite = bullets[bulletIndex];		//Then look up the bullet
 				b.exists = true;							//Then do almost exactly the same steps as
-				b.x = x + width / 2 - b.width;					// in Ship.as, except we set the velocity
-				b.y = y;									// to shoot slowly downwards instead.
+				b.dead = false;								// in Ship.as, except we set the velocity
+				b.x = x + width / 2 - b.width;				// to shoot slowly downwards instead.
+				b.y = y;
 				b.velocity.y = 65;
 				bulletIndex++;
 				if(bulletIndex >= bullets.length)

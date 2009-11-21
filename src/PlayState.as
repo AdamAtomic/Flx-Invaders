@@ -96,12 +96,12 @@ package
 			
 			//This is how we do basic sprite collisions in flixel!
 			//We compare one array of objects against another, and then if any of them overlap
-			// then we just call the function you pass in - in this case, BulletHitObject.
-			FlxG.overlapArrays(player_bullets,enemies,BulletHitObject);
-			FlxG.overlapArrays(player_bullets,shields,BulletHitObject);
-			FlxG.overlapArrays(enemy_bullets,shields,BulletHitObject);
-			FlxG.overlapArray(enemy_bullets,player,BulletHitObject);
-			FlxG.overlapArray(enemies,player,BulletHitObject);
+			// flixel calls their 'kill' method, which by default sets the object to not exist (!exists)
+			FlxG.overlapArrays(player_bullets,enemies);
+			FlxG.overlapArrays(player_bullets,shields);
+			FlxG.overlapArrays(enemy_bullets,shields);
+			FlxG.overlapArray(enemy_bullets,player);
+			FlxG.overlapArray(enemies,player);
 			
 			//THIS IS SUPER IMPORTANT and also easy to forget.  But all those objects that we added
 			// to the state earlier (i.e. all of everything) will not get automatically updated
@@ -136,16 +136,6 @@ package
 				FlxG.switchState(PlayState);	//Same dealy as above
 				return;
 			}
-		}
-		
-		//This is our collision callback - it is very simple, and simply flags
-		// any overlapping objects as nonexistent.  Collisions in flixel will
-		// automatically ignore nonexistent objects, and we also check for
-		// existence in the game over routine above.
-		public function BulletHitObject(Bullet:FlxSprite,Object:FlxSprite):void
-		{
-			Bullet.exists = false;
-			Object.exists = false;
 		}
 	}
 }
