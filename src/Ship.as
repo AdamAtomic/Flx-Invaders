@@ -22,13 +22,12 @@ package
 		//Basic game loop function again!
 		override public function update():void
 		{
-			//Controls!  
+			//Controls!
+			velocity.x = 0;				//Default velocity to zero
 			if(FlxG.keys.LEFT)
-				velocity.x = -150;		//If the player is pressing left, set velocity to left 150
-			else if(FlxG.keys.RIGHT)	
-				velocity.x = 150;		//If the player is pressing right, then right 150
-			else
-				velocity.x = 0;			//Else set velocity to zero
+				velocity.x -= 150;		//If the player is pressing left, set velocity to left 150
+			if(FlxG.keys.RIGHT)	
+				velocity.x += 150;		//If the player is pressing right, then right 150
 			
 			//Just like in PlayState, this is easy to forget but very important!
 			//Call this to automatically evaluate your velocity and position and stuff.

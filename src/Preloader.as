@@ -1,6 +1,13 @@
-package { import org.flixel.data.FlxFactory; public class Preloader extends FlxFactory { public function Preloader():void {
+package
+{
+	import org.flixel.data.FlxFactory;
 	
-	className = "FlxInvaders";
-	super();
-	
-}}}
+	public class Preloader extends FlxFactory
+	{
+		public function Preloader():void
+		{
+			className = "FlxInvaders";
+			super();
+		}
+	}
+}
