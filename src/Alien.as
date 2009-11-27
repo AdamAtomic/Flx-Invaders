@@ -28,7 +28,7 @@ package
 			//We want to play them in the order 1, 2, 3, 1 (but of course this stuff is 0-index).
 			//To avoid a weird, annoying appearance the framerate is randomized a little bit
 			// to a value between 6 and 10 (6+4) frames per second.
-			addAnimation("Default",[0,1,0,2],6+Math.random()*4);
+			addAnimation("Default",[0,1,0,2],6+FlxG.random()*4);
 			
 			//Now that the animation is set up, it's very easy to play it back!
 			play("Default");
@@ -75,7 +75,7 @@ package
 		//This function just resets our bullet logic timer to a random value between 1 and 11
 		private function restart():void
 		{
-			shotClock = 1+Math.random()*10;
+			shotClock = 1+FlxG.random()*10;
 		}
 	}
 }
