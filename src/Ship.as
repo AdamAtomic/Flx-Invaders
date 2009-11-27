@@ -46,10 +46,7 @@ package
 			{
 				//Space bar was pressed!  FIRE A BULLET
 				var b:FlxSprite = bullets[bulletIndex];	//Figure out which bullet to fire
-				b.exists = true;						//Make sure the bullet exists
-				b.dead = false;
-				b.x = x + width / 2 - b.width;			//Set the horizontal position to our middle
-				b.y = y;								//Set the vertical position to our top
+				b.reset(x + width / 2 - b.width, y);
 				b.velocity.y = -240;					//Set the vertical speed to shoot up fast
 				bulletIndex++;							//Increment our bullet list tracker
 				if(bulletIndex >= bullets.length)		//And check to see if we went over

@@ -22,7 +22,7 @@ package
 			color = Color;		//setting the color tints the plain white alien graphic
 			bullets = Bullets;
 			bulletIndex = 0;
-			reset();			//Resets the timer for the bullet shooting logic
+			restart();			//Resets the timer for the bullet shooting logic
 			
 			//Time to create a simple animation!  alien.png has 3 frames of animation in it.
 			//We want to play them in the order 1, 2, 3, 1 (but of course this stuff is 0-index).
@@ -54,17 +54,14 @@ package
 			}
 			
 			//Then do some bullet shooting logic
-			if(y > FlxG.height/2)
+			if(y > FlxG.height * 0.35)
 				shotClock -= FlxG.elapsed; //Only count down if on the bottom half of the screen
 			if(shotClock <= 0)
 			{
 				//We counted down to zero, so it's time to shoot a bullet!
-				reset();									//First, reset the shot clock
+				restart();									//First, reset the shot clock
 				var b:FlxSprite = bullets[bulletIndex];		//Then look up the bullet
-				b.exists = true;							//Then do almost exactly the same steps as
-				b.dead = false;								// in Ship.as, except we set the velocity
-				b.x = x + width / 2 - b.width;				// to shoot slowly downwards instead.
-				b.y = y;
+				b.reset(x + width / 2 - b.width, y);
 				b.velocity.y = 65;
 				bulletIndex++;
 				if(bulletIndex >= bullets.length)
@@ -76,7 +73,7 @@ package
 		}
 		
 		//This function just resets our bullet logic timer to a random value between 1 and 11
-		private function reset():void
+		private function restart():void
 		{
 			shotClock = 1+Math.random()*10;
 		}
