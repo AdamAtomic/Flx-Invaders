@@ -4,7 +4,7 @@ package
 
 	public class Alien extends FlxSprite		//Class declaration for the squid monster class
 	{
-		private var bullets:FlxArray;			//Reference to the bullets the enemies shoot at you
+		private var bullets:Array;			//Reference to the bullets the enemies shoot at you
 		static private var bulletIndex:uint;	//Tracker or marker for the bullet list
 		private var shotClock:Number;			//A simple timer for deciding when to shoot
 		private var originalX:int;				//Saves the starting horizontal position (for movement logic)
@@ -13,7 +13,7 @@ package
 		
 		//This is the constructor for the squid monster.
 		//We are going to set up the basic values and then create a simple animation.
-		public function Alien(X:int,Y:int,Color:uint,Bullets:FlxArray)
+		public function Alien(X:int,Y:int,Color:uint,Bullets:Array)
 		{
 			super(ImgAlien, X, Y, true, false); //Initialize sprite object - 'animated' set to true!
 			

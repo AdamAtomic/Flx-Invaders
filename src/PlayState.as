@@ -5,10 +5,10 @@ package
 	public class PlayState extends FlxState		//The class declaration for the main game state
 	{
 		private var player:Ship;				//refers to the little player ship at the bottom
-		private var player_bullets:FlxArray;	//refers to the bullets you shoot
-		private var enemies:FlxArray;			//refers to all the squid monsters
-		private var enemy_bullets:FlxArray;		//refers to all the bullets the enemies shoot at you
-		private var shields:FlxArray;			//refers to the box shields along the bottom of the game
+		private var player_bullets:Array;	//refers to the bullets you shoot
+		private var enemies:Array;			//refers to all the squid monsters
+		private var enemy_bullets:Array;		//refers to all the bullets the enemies shoot at you
+		private var shields:Array;			//refers to the box shields along the bottom of the game
 		
 		//This is constructor for the main game state
 		//Inside this function we will create and orient all the important game objects.
@@ -23,13 +23,13 @@ package
 			
 			//First we will instantiate the bullets you fire at your enemies.
 			var s:FlxSprite;
-			player_bullets = new FlxArray();//Initializing the array is very important and easy to forget!
+			player_bullets = new Array();//Initializing the array is very important and easy to forget!
 			for(i = 0; i < 8; i++)			//Create 8 bullets for the player to recycle
 			{
 				//Instantiate a new 2x8 generic sprite offscreen
 				s = new FlxSprite(null, -100, -100, false, false, 2, 8, 0xffffffff);
 				add(s);					//Add it to the state
-				player_bullets.add(s);	//Add it to the array of player bullets
+				player_bullets.push(s);	//Add it to the array of player bullets
 			}
 			//NOTE: what we're doing here with bullets might seem kind of complicated but
 			// it is a good thing to get into the practice of doing.  What we are doing
@@ -41,18 +41,18 @@ package
 			add(player);	//Adds the player to the state
 			
 			//Then we kind of do the same thing for the enemy invaders; first we make their bullets...
-			enemy_bullets = new FlxArray();
+			enemy_bullets = new Array();
 			for(i = 0; i < 64; i++)
 			{
 				s = new FlxSprite(null, -100, -100, false, false, 2, 8, 0xffffffff);
 				add(s);
-				enemy_bullets.add(s);
+				enemy_bullets.push(s);
 			}
 			
 			//...then we go through and make the invaders.  This looks all mathy but it's not that bad!
 			//We're basically making 5 rows of 10 invaders, and each row is a different color.
 			var a:Alien;
-			enemies = new FlxArray();
+			enemies = new Array();
 			var colors:Array = new Array(0xff0000ff, 0xff00ffff, 0xff00ff00, 0xffffff00, 0xffff0000);
 			for(i = 0; i < 50; i++)
 			{
@@ -60,7 +60,7 @@ package
 								24 + int(i / 10) * 32,	//The Y position of the alien
 								colors[int(i / 10)], enemy_bullets);
 				add(a);
-				enemies.add(a);
+				enemies.push(a);
 			}
 
 			//Finally, we're going to make the little box shields at the bottom of the screen.
@@ -68,7 +68,7 @@ package
 			//That way they look like they're getting chipped apart as they get shot.
 			//This also looks kind of crazy and mathy (it sort of is), but we're just
 			// telling the game where to put all the individual bits that make up each box.
-			shields = new FlxArray();
+			shields = new Array();
 			for(i = 0; i < 256; i++)
 			{
 				s = new FlxSprite(	null,
@@ -76,11 +76,11 @@ package
 									FlxG.height - 32 + (int((i % 64) / 8) * 2),	//The Y position of this bit
 									false,false,2,2,0xffffffff);
 				add(s);
-				shields.add(s);
+				shields.push(s);
 			}
 			
 			//Then we're going to add a text field to display the label we're storing in the scores array.
-			add(new FlxText(4,4,FlxG.width-8,20,FlxG.scores[0],0xffffffff));
+			add(new FlxText(4,4,FlxG.width-8,FlxG.scores[0],0xffffffff,null,8,"center"));
 			
 			//Finally we display the cursor to encourage people to click the game,
 			// which will give Flash the browser focus and let the keyboard work.

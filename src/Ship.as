@@ -4,13 +4,13 @@ package
 
 	public class Ship extends FlxSprite		//Class declaration for the player's little ship
 	{
-		private var bullets:FlxArray;		//Refers to the bullets you can shoot at enemies
+		private var bullets:Array;		//Refers to the bullets you can shoot at enemies
 		private var bulletIndex:int;		//Keeps track of where in the list of bullets we are
 		
 		[Embed(source="ship.png")] private var ImgShip:Class;	//Graphic of the player's ship
 		
 		//Constructor for the player - just initializing a simple sprite using a graphic.
-		public function Ship(Bullets:FlxArray)
+		public function Ship(Bullets:Array)
 		{
 			//This initializes this sprite object with the graphic of the ship and
 			// positions it in the middle of the screen.
