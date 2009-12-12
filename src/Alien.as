@@ -15,7 +15,8 @@ package
 		//We are going to set up the basic values and then create a simple animation.
 		public function Alien(X:int,Y:int,Color:uint,Bullets:Array)
 		{
-			super(ImgAlien, X, Y, true, false); //Initialize sprite object - 'animated' set to true!
+			super(X,Y);					//Initialize sprite object
+			loadGraphic(ImgAlien,true);	//Load this animated graphic file
 			
 			//Saving off some of the values we passed in
 			originalX = X;

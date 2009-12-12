@@ -26,10 +26,10 @@ package
 			player_bullets = new Array();//Initializing the array is very important and easy to forget!
 			for(i = 0; i < 8; i++)			//Create 8 bullets for the player to recycle
 			{
-				//Instantiate a new 2x8 generic sprite offscreen
-				s = new FlxSprite(null, -100, -100, false, false, 2, 8, 0xffffffff);
-				add(s);					//Add it to the state
-				player_bullets.push(s);	//Add it to the array of player bullets
+				s = new FlxSprite(-100,-100);	//Instantiate a new sprite offscreen
+				s.createGraphic(2,8);			//Create a 2x8 white box
+				add(s);							//Add it to the state
+				player_bullets.push(s);			//Add it to the array of player bullets
 			}
 			//NOTE: what we're doing here with bullets might seem kind of complicated but
 			// it is a good thing to get into the practice of doing.  What we are doing
@@ -44,7 +44,8 @@ package
 			enemy_bullets = new Array();
 			for(i = 0; i < 64; i++)
 			{
-				s = new FlxSprite(null, -100, -100, false, false, 2, 8, 0xffffffff);
+				s = new FlxSprite(-100,-100);
+				s.createGraphic(2,8);
 				add(s);
 				enemy_bullets.push(s);
 			}
@@ -71,16 +72,17 @@ package
 			shields = new Array();
 			for(i = 0; i < 256; i++)
 			{
-				s = new FlxSprite(	null,
-									32 + 80 * int(i / 64) + (i % 8) * 2,		//The X position of this bit
-									FlxG.height - 32 + (int((i % 64) / 8) * 2),	//The Y position of this bit
-									false,false,2,2,0xffffffff);
+				s = new FlxSprite(	32 + 80 * int(i / 64) + (i % 8) * 2,		//The X position of this bit
+									FlxG.height - 32 + (int((i % 64) / 8) * 2));//The Y position of this bit
+				s.createGraphic(2,2);
 				add(s);
 				shields.push(s);
 			}
 			
 			//Then we're going to add a text field to display the label we're storing in the scores array.
-			add(new FlxText(4,4,FlxG.width-8,FlxG.scores[0],0xffffffff,null,8,"center"));
+			var t:FlxText = new FlxText(4,4,FlxG.width-8,FlxG.scores[0]);
+			t.alignment = "center";
+			add(t);
 			
 			//Finally we display the cursor to encourage people to click the game,
 			// which will give Flash the browser focus and let the keyboard work.

@@ -14,7 +14,7 @@ package
 		{
 			//This initializes this sprite object with the graphic of the ship and
 			// positions it in the middle of the screen.
-			super(ImgShip, FlxG.width/2-6, FlxG.height-12);
+			super(FlxG.width/2-6, FlxG.height-12, ImgShip);
 			bullets = Bullets;	//Save a reference to the bullets array
 			bulletIndex = 0;	//Initialize our list marker to the first entry
 		}
