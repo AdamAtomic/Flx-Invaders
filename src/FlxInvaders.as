@@ -9,7 +9,7 @@ package {
 		public function FlxInvaders():void
 		{
 			super(320,240,PlayState); //Create a new FlxGame object at 320x240 with 2x pixels, then load PlayState
-			showLogo = false;
+			//showLogo = false;
 		}
 	}
 }
