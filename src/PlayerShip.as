@@ -2,21 +2,16 @@ package
 {
 	import org.flixel.*;
 
-	public class Ship extends FlxSprite		//Class declaration for the player's little ship
+	public class PlayerShip extends FlxSprite		//Class declaration for the player's little ship
 	{
-		private var bullets:Array;		//Refers to the bullets you can shoot at enemies
-		private var bulletIndex:int;		//Keeps track of where in the list of bullets we are
-		
 		[Embed(source="ship.png")] private var ImgShip:Class;	//Graphic of the player's ship
 		
 		//Constructor for the player - just initializing a simple sprite using a graphic.
-		public function Ship(Bullets:Array)
+		public function PlayerShip()
 		{
 			//This initializes this sprite object with the graphic of the ship and
 			// positions it in the middle of the screen.
 			super(FlxG.width/2-6, FlxG.height-12, ImgShip);
-			bullets = Bullets;	//Save a reference to the bullets array
-			bulletIndex = 0;	//Initialize our list marker to the first entry
 		}
 		
 		//Basic game loop function again!
@@ -45,12 +40,9 @@ package
 			if(FlxG.keys.justPressed("SPACE"))
 			{
 				//Space bar was pressed!  FIRE A BULLET
-				var b:FlxSprite = bullets[bulletIndex];	//Figure out which bullet to fire
-				b.reset(x + width / 2 - b.width, y);
-				b.velocity.y = -240;					//Set the vertical speed to shoot up fast
-				bulletIndex++;							//Increment our bullet list tracker
-				if(bulletIndex >= bullets.length)		//And check to see if we went over
-					bulletIndex = 0;					//If we did just reset.
+				var bullet:FlxSprite = (FlxG.state as PlayState).playerBullets.recycle() as FlxSprite;
+				bullet.reset(x + width/2 - bullet.width/2, y);
+				bullet.velocity.y = -140;
 			}
 		}
 	}
